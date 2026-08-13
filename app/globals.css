@@ -1,0 +1,104 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --color-parchment: var(--parchment);
+  --color-ink: var(--ink);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --font-serif: var(--font-playfair), Georgia, serif;
+  --font-sans: var(--font-garamond), Georgia, serif;
+  --font-script: var(--font-script-var), cursive;
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+}
+
+:root {
+  color-scheme: light;
+  --background: #f4f0e6;
+  --foreground: #2b2119;
+  --card: #f8f5ec;
+  --card-foreground: #2b2119;
+  --popover: #f8f5ec;
+  --popover-foreground: #2b2119;
+  --primary: #241a12;
+  --primary-foreground: #f4f0e6;
+  --secondary: #ece6d7;
+  --secondary-foreground: #2b2119;
+  --muted: #ece6d7;
+  --muted-foreground: #6f6353;
+  --accent: #a5814b;
+  --accent-foreground: #f4f0e6;
+  --destructive: #a53e2e;
+  --border: #d9d1bf;
+  --input: #d9d1bf;
+  --ring: #a5814b;
+  --radius: 0.25rem;
+  --parchment: #ede7d8;
+  --ink: #181109;
+  --gold: #a5814b;
+  --gold-light: #c9a568;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'liga' 1, 'kern' 1;
+  }
+  ::selection {
+    background-color: var(--gold);
+    color: var(--primary-foreground);
+  }
+  h1,
+  h2,
+  h3 {
+    font-feature-settings: 'liga' 1, 'dlig' 1, 'kern' 1;
+    letter-spacing: -0.01em;
+  }
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
