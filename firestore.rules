@@ -1,0 +1,62 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to check if user is authenticated
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    // Helper function to check if user is the admin
+    // You should replace 'toDa9v42ODNfDVNbr4UuvMlIvVh2' with your actual admin user ID
+    function isAdmin() {
+      return isSignedIn() && request.auth.uid == 'toDa9v42ODNfDVNbr4UuvMlIvVh2';
+    }
+    
+    // Site configuration (author data, books, series, settings)
+    match /site/{document=**} {
+      // Public read access for website content
+      allow read: if true;
+      // Only admin can write configuration
+      allow write: if isAdmin();
+    }
+    
+    // Messages collection
+    match /messages/{messageId} {
+      // Admin can read all messages
+      allow read: if isAdmin();
+      // Admin can update message read status
+      allow update: if isAdmin() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['read']);
+      // Admin can delete messages
+      allow delete: if isAdmin();
+      // Public can create messages (contact form)
+      allow create: if isSignedIn() 
+        && request.resource.data.keys().hasAll(['name', 'email', 'message'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.email is string
+        && request.resource.data.email.matches('^[^@]+@[^@]+\\.[^@]+$')
+        && request.resource.data.message is string
+        && request.resource.data.message.size() > 0;
+    }
+    
+    // Subscribers collection
+    match /subscribers/{subscriberId} {
+      // Admin can read all subscribers
+      allow read: if isAdmin();
+      // Admin can delete subscribers
+      allow delete: if isAdmin();
+      // Public can create subscriptions (newsletter signup)
+      allow create: if request.resource.data.keys().hasOnly(['email', 'createdAt'])
+        && request.resource.data.email is string
+        && request.resource.data.email.matches('^[^@]+@[^@]+\\.[^@]+$')
+        && request.resource.data.email.size() > 0
+        && request.resource.data.email.size() <= 255;
+    }
+    
+    // Deny all other access
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

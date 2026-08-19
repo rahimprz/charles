@@ -1,6 +1,8 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Playfair_Display, EB_Garamond, Dancing_Script } from 'next/font/google'
+import { AuthProvider } from '@/lib/auth-context'
+import { AuthorProvider } from '@/lib/author-context'
 import './globals.css'
 
 const playfair = Playfair_Display({
@@ -29,8 +31,10 @@ const script = Dancing_Script({
 export const metadata: Metadata = {
   title: 'Charles David Tebbs | Author',
   description:
-    'Stories of courage, legacy, and frontier. Step into the untamed frontier where legacy is earned, not given.',
-  generator: 'v0.app',
+    'Official website of Charles David Tebbs ("David"), author of The Trail Unfolded series. Western historical adventure, books, news, and bio.',
+  icons: {
+    icon: '/icon.svg',
+  },
 }
 
 export const viewport: Viewport = {
@@ -48,10 +52,15 @@ export default function RootLayout({
       lang="en"
       className={`bg-background ${playfair.variable} ${garamond.variable} ${script.variable}`}
     >
-      <body className="font-sans antialiased">
-        {children}
+      <body className="font-sans antialiased text-foreground selection:bg-gold selection:text-primary-foreground">
+        <AuthProvider>
+          <AuthorProvider>
+            {children}
+          </AuthorProvider>
+        </AuthProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
   )
 }
+
