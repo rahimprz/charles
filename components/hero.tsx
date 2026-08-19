@@ -73,36 +73,101 @@ export function Hero() {
 
         {/* Right Column: Stacked 3 Books Featured Visual */}
         <div className="relative flex-1 flex justify-center items-center">
-          <div className="relative w-full max-w-md lg:max-w-lg">
+          <div className="relative w-full max-w-lg lg:max-w-xl">
             {/* Background Glow */}
-            <div className="absolute -inset-4 rounded-3xl bg-gold/15 blur-2xl -z-10" />
+            <div className="absolute -inset-8 rounded-3xl bg-gold/10 blur-3xl -z-10" />
 
-            <div className="relative overflow-hidden rounded-xl border-2 border-gold/40 bg-parchment p-3 shadow-2xl transition-transform duration-500 hover:scale-[1.01]">
-              <div className="relative aspect-[4/3] sm:aspect-[16/11] w-full overflow-hidden rounded-lg bg-stone-900">
-                <img
-                  src={data.author.stackedBooksImage || 'https://d1an6hb2j63rg7.cloudfront.net/3c70513c_c21c_46b6_ad36_4d4ea58d0cb9_4a73ec9f17.jpeg'}
-                  alt="Charles David Tebbs Three Books Stacked - The Trail Series"
-                  className="h-full w-full object-cover object-center transition-transform duration-700 hover:scale-105"
-                />
+            <div className="relative">
+              {/* Series Badge */}
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-30">
+                <div className="inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 shadow-lg border-2 border-gold/50">
+                  <Sparkles className="size-4 text-gold" />
+                  <span className="text-xs font-bold uppercase tracking-wider text-white">Featured Series</span>
+                </div>
               </div>
 
-              {/* Floating Badge */}
-              <div className="mt-3 flex items-center justify-between px-2 py-1">
-                <div>
-                  <p className="font-serif text-sm font-bold text-ink">
-                    The Trail Unfolded Series
-                  </p>
-                  <p className="text-[11px] text-muted-foreground">
-                    Books 1, 2 & Upcoming Sequel #3
-                  </p>
+              {/* Stacked Books Container */}
+              <div className="relative pt-8 pb-6 px-4">
+                {/* Book 1 (Left) */}
+                <div className="absolute left-4 top-12 w-[140px] sm:w-[160px] transform -rotate-12 hover:-rotate-8 transition-all duration-500 hover:z-20 hover:scale-105 cursor-pointer group">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-br from-stone-800 to-stone-900 rounded-lg transform translate-x-2 translate-y-2 -z-10" />
+                    <img
+                      src={data.books[2]?.coverImage || 'https://d1an6hb2j63rg7.cloudfront.net/trail_faf4f2bb9d.webp'}
+                      alt={data.books[2]?.title || 'The Trail Rendezvous'}
+                      className="relative w-full h-[220px] sm:h-[250px] object-cover rounded-lg shadow-2xl border-2 border-gold/40 group-hover:border-gold transition-all duration-300"
+                    />
+                    <div className="absolute -top-3 -left-3 bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+                      #1
+                    </div>
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 rounded-b-lg">
+                      <p className="font-serif text-xs font-bold text-white truncate">{data.books[2]?.title || 'The Trail Rendezvous'}</p>
+                      <p className="text-[10px] text-emerald-300 font-semibold">{data.books[2]?.status || 'Upcoming'}</p>
+                    </div>
+                  </div>
                 </div>
-                <Link
-                  href="/series"
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-ink transition-colors"
-                >
-                  <span>View Series</span>
-                  <ArrowRight className="size-3.5" />
-                </Link>
+
+                {/* Book 2 (Center - Top) */}
+                <div className="absolute left-1/2 -translate-x-1/2 top-4 w-[140px] sm:w-[160px] transform rotate-3 hover:rotate-6 transition-all duration-500 hover:z-30 hover:scale-105 cursor-pointer group z-10">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-br from-stone-800 to-stone-900 rounded-lg transform translate-x-2 translate-y-2 -z-10" />
+                    <img
+                      src={data.books[0]?.coverImage || 'https://d1an6hb2j63rg7.cloudfront.net/3c70513c_c21c_46b6_ad36_4d4ea58d0cb9_4a73ec9f17.jpeg'}
+                      alt={data.books[0]?.title || 'The Trail Book #1'}
+                      className="relative w-full h-[220px] sm:h-[250px] object-cover rounded-lg shadow-2xl border-2 border-gold/60 group-hover:border-gold transition-all duration-300"
+                    />
+                    <div className="absolute -top-3 -right-3 bg-gold text-ink text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+                      #2
+                    </div>
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 rounded-b-lg">
+                      <p className="font-serif text-xs font-bold text-white truncate">{data.books[0]?.title || 'The Trail Book #1'}</p>
+                      <p className="text-[10px] text-emerald-300 font-semibold">{data.books[0]?.status || 'Available now'}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Book 3 (Right) */}
+                <div className="absolute right-4 top-12 w-[140px] sm:w-[160px] transform rotate-12 hover:rotate-8 transition-all duration-500 hover:z-20 hover:scale-105 cursor-pointer group">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-br from-stone-800 to-stone-900 rounded-lg transform translate-x-2 translate-y-2 -z-10" />
+                    <img
+                      src={data.books[1]?.coverImage || 'https://d1an6hb2j63rg7.cloudfront.net/c38f9a6d_ce44_481c_9824_273207adfd3f_ca46faaff4.jpeg'}
+                      alt={data.books[1]?.title || 'The Trail Unfolded Book Sequel #2'}
+                      className="relative w-full h-[220px] sm:h-[250px] object-cover rounded-lg shadow-2xl border-2 border-amber-400/40 group-hover:border-amber-400 transition-all duration-300"
+                    />
+                    <div className="absolute -top-3 -right-3 bg-amber-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+                      #3
+                    </div>
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 rounded-b-lg">
+                      <p className="font-serif text-xs font-bold text-white truncate">{data.books[1]?.title || 'The Trail Unfolded Book Sequel #2'}</p>
+                      <p className="text-[10px] text-amber-300 font-semibold">{data.books[1]?.status || 'Available now'}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Series Info Card */}
+                <div className="relative mt-[280px] sm:mt-[310px] bg-gradient-to-br from-parchment to-background rounded-2xl border-2 border-gold/30 p-6 shadow-2xl text-center">
+                  <h3 className="font-serif text-xl font-bold text-ink mb-1">{data.series.title}</h3>
+                  <p className="text-sm text-muted-foreground mb-4">{data.series.genre}</p>
+                  <div className="flex items-center justify-center gap-4 mb-4">
+                    <div className="flex items-center gap-2">
+                      <BookOpen className="size-4 text-gold" />
+                      <span className="text-sm font-semibold text-ink">{data.books.length} Books</span>
+                    </div>
+                    <div className="h-px w-8 bg-border" />
+                    <div className="flex items-center gap-2">
+                      <Sparkles className="size-4 text-gold" />
+                      <span className="text-sm font-semibold text-ink">Western Saga</span>
+                    </div>
+                  </div>
+                  <Link
+                    href="/series"
+                    className="inline-flex items-center gap-2 bg-ink px-6 py-3 text-xs font-bold uppercase tracking-wider text-white rounded-lg shadow-lg hover:bg-gold hover:text-ink transition-all duration-300 group"
+                  >
+                    <span>View Complete Series</span>
+                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
