@@ -67,7 +67,7 @@ export function BookSpotlight() {
           <p className="mt-3 flex items-center gap-2 font-serif text-base italic text-gold-light sm:text-lg">
             <span>Book 1 in</span>
             <Link href="/series" className="underline underline-offset-4 transition-colors hover:text-gold">
-              The Trail Unfolded Series
+              The Trail Series
             </Link>
           </p>
 

@@ -145,7 +145,7 @@ export function NewsletterFooter() {
               </li>
               <li>
                 <Link href="/series" className="transition-colors hover:text-gold">
-                  The Trail Unfolded Series
+                  The Trail Series
                 </Link>
               </li>
               <li>

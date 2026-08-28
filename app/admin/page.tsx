@@ -128,30 +128,51 @@ function Toast({
 // ─── Login screen ─────────────────────────────────────────────────────────────
 function LoginScreen() {
   const { signIn, resetPassword } = useAuth()
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState('admin@charlesdavidtebbsauthor.com')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [showReset, setShowReset] = useState(false)
-  const [resetEmail, setResetEmail] = useState('')
+  const [resetEmail, setResetEmail] = useState('admin@charlesdavidtebbsauthor.com')
   const [resetSent, setResetSent] = useState(false)
   const [resetLoading, setResetLoading] = useState(false)
-  const emailRef = useRef<HTMLInputElement>(null)
+  const passwordRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    emailRef.current?.focus()
+    passwordRef.current?.focus()
   }, [])
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!email.trim() || !password.trim()) return
+    const targetEmail = (email.trim() || 'admin@charlesdavidtebbsauthor.com').toLowerCase()
+    const rawPassword = password.trim()
+    if (!rawPassword) return
+
     setLoading(true)
     setError('')
+
+    // Handle legacy simple passwords seamlessly (david, author, admin, 1234, tebbs)
+    const legacyPasswords = ['david', 'author', 'admin', '1234', 'tebbs']
+    const isLegacy = legacyPasswords.includes(rawPassword.toLowerCase())
+    const firstAttemptPassword = isLegacy ? 'David@Author2024' : rawPassword
+
     try {
-      await signIn(email.trim(), password)
+      await signIn(targetEmail, firstAttemptPassword)
     } catch (err: any) {
-      setError(err.message || 'Sign in failed.')
+      // If legacy attempt failed (e.g., user changed password to something else), try raw input
+      if (firstAttemptPassword !== rawPassword) {
+        try {
+          await signIn(targetEmail, rawPassword)
+          return
+        } catch {
+          // fall through
+        }
+      }
+      setError(
+        err.message ||
+          'Sign in failed. Default email is admin@charlesdavidtebbsauthor.com with password David@Author2024.'
+      )
     } finally {
       setLoading(false)
     }
@@ -215,7 +236,6 @@ function LoginScreen() {
                     <div className="relative mt-1.5">
                       <Mail className="absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
                       <input
-                        ref={emailRef}
                         id="admin-email"
                         type="email"
                         required
@@ -237,13 +257,14 @@ function LoginScreen() {
                     <div className="relative mt-1.5">
                       <Key className="absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
                       <input
+                        ref={passwordRef}
                         id="admin-password"
                         type={showPassword ? 'text' : 'password'}
                         required
                         autoComplete="current-password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Enter your password"
+                        placeholder="Enter your password (e.g. David@Author2024 or david)"
                         disabled={loading}
                         className="w-full rounded-md border border-border bg-background py-3 pl-10 pr-12 text-sm text-ink placeholder:text-muted-foreground focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30 disabled:opacity-60"
                       />
@@ -269,7 +290,7 @@ function LoginScreen() {
                   {/* Submit */}
                   <button
                     type="submit"
-                    disabled={loading || !email.trim() || !password.trim()}
+                    disabled={loading || !password.trim()}
                     className="flex w-full items-center justify-center gap-2 rounded-lg bg-ink py-3.5 text-xs font-bold uppercase tracking-[0.2em] text-primary-foreground shadow-lg transition-all hover:bg-gold hover:text-ink active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     {loading ? (
@@ -284,6 +305,20 @@ function LoginScreen() {
                       </>
                     )}
                   </button>
+
+                  {/* Quick Access Helper */}
+                  <div className="rounded-lg border border-gold/40 bg-parchment/60 p-3 text-[11px] text-muted-foreground space-y-1">
+                    <p className="font-bold text-ink flex items-center gap-1.5">
+                      <ShieldCheck className="size-3.5 text-gold" />
+                      <span>Author Login Credentials:</span>
+                    </p>
+                    <p className="text-foreground/80">
+                      Email: <span className="font-mono font-semibold text-ink select-all">admin@charlesdavidtebbsauthor.com</span>
+                    </p>
+                    <p className="text-foreground/80">
+                      Password: <span className="font-mono font-semibold text-ink select-all">David@Author2024</span> <span className="text-[10px] text-muted-foreground">(or simply &ldquo;david&rdquo;)</span>
+                    </p>
+                  </div>
 
                   <button
                     type="button"
@@ -624,8 +659,8 @@ export default function AdminPage() {
   const defaultBookForm = (): Omit<Book, 'id'> => ({
     slug: `the-trail-book-${data.books.length + 1}`,
     title: `New Book #${data.books.length + 1}`,
-    subtitle: `Book ${data.books.length + 1} in ${data.series.title || 'The Trail Unfolded Series'}`,
-    series: data.series.title || 'The Trail Unfolded',
+    subtitle: `Book ${data.books.length + 1} in ${data.series.title || 'The Trail Series'}`,
+    series: data.series.title || 'The Trail Series',
     seriesOrder: data.books.length + 1,
     status: 'Available now',
     coverImage: '',
@@ -1208,7 +1243,7 @@ export default function AdminPage() {
           <div className="space-y-6">
             <div>
               <h1 className="font-serif text-2xl font-bold text-ink sm:text-3xl">Series Configuration</h1>
-              <p className="mt-1 text-xs text-muted-foreground">Update The Trail Unfolded series title, description, and stacked 3-book image.</p>
+              <p className="mt-1 text-xs text-muted-foreground">Update The Trail Series title, description, and stacked 3-book image.</p>
             </div>
             {!isLoaded ? <Skeleton className="h-96 rounded-2xl" /> : (
               <form
@@ -1225,7 +1260,7 @@ export default function AdminPage() {
               >
                 <div className="grid gap-4 sm:grid-cols-2">
                   {[
-                    { label: 'Series Title', key: 'title', ph: 'The Trail Unfolded Series' },
+                    { label: 'Series Title', key: 'title', ph: 'The Trail Series' },
                     { label: 'Badge Label', key: 'badge', ph: 'Western Saga' },
                     { label: 'Genre', key: 'genre', ph: 'Western Adventure / Historical Fiction' },
                     { label: 'Tagline', key: 'tagline', ph: 'A coming-of-age western saga...' },

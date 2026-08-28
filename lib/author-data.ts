@@ -119,13 +119,13 @@ export const DEFAULT_AUTHOR_DATA: AuthorDataStore = {
       'I am interested with your reviews and feedback, as a new author I am interested and looking to make improvements.... Thank You! David',
   },
   series: {
-    id: 'the-trail-unfolded',
-    title: 'The Trail Unfolded Series',
-    subtitle: '3 Books in Series',
+    id: 'the-trail-series',
+    title: 'The Trail Series',
+    subtitle: '3 Book Series',
     badge: 'Western Saga',
     tagline: 'A coming-of-age western saga of courage, identity, and heritage.',
     description:
-      'Sequel to The Trail Book #1. A coming-of-age western saga of courage, identity, and heritage set against the unforgiving American frontier and the high seas. Follow James Jack, Mo, Mabel, and an unforgettable cast of characters as they fight for freedom, legacy, and justice.',
+      'A coming-of-age western saga of courage, identity, and heritage set against the unforgiving American frontier and the high seas. Follow James Jack, Mo, Mabel, and an unforgettable cast of characters as they fight for freedom, legacy, and justice.',
     booksCount: 3,
     genre: 'Western Adventure / Historical Fiction',
     stackedImage:
@@ -136,8 +136,8 @@ export const DEFAULT_AUTHOR_DATA: AuthorDataStore = {
       id: 'book-1',
       slug: 'the-trail-book-1',
       title: 'The Trail Book #1',
-      subtitle: 'Book 1 in The Trail Unfolded Series',
-      series: 'The Trail Unfolded',
+      subtitle: 'Book 1 in The Trail Series',
+      series: 'The Trail Series',
       seriesOrder: 1,
       status: 'Available now',
       coverImage:
@@ -157,10 +157,10 @@ export const DEFAULT_AUTHOR_DATA: AuthorDataStore = {
     },
     {
       id: 'book-2',
-      slug: 'the-trail-unfolded-book-sequel-2',
-      title: 'The Trail Unfolded Book Sequel #2',
-      subtitle: 'Book 2 in The Trail Unfolded Series',
-      series: 'The Trail Unfolded',
+      slug: 'the-trail-unfolded-book-2',
+      title: 'The Trail Unfolded Book #2',
+      subtitle: 'Book 2 in The Trail Series',
+      series: 'The Trail Series',
       seriesOrder: 2,
       status: 'Available now',
       coverImage:
@@ -181,16 +181,16 @@ export const DEFAULT_AUTHOR_DATA: AuthorDataStore = {
     {
       id: 'book-3',
       slug: 'the-trail-rendezvous',
-      title: 'The Trail Rendezvous',
-      subtitle: 'Book 3 in The Trail Unfolded Series',
-      series: 'The Trail Unfolded',
+      title: 'The Trail Rendezvous #3',
+      subtitle: 'Book 3 in The Trail Series',
+      series: 'The Trail Series',
       seriesOrder: 3,
       status: 'Upcoming sequel',
       coverImage: 'https://d1an6hb2j63rg7.cloudfront.net/trail_faf4f2bb9d.webp',
       shortDescription:
-        'The highly anticipated sequel in The Trail Unfolded saga. Old loyalties are tested and new frontiers await as the journeys of James Jack, Mo, and Mabel converge in an epic high-country rendezvous.',
+        'The highly anticipated third book in The Trail Series. Old loyalties are tested and new frontiers await as the journeys of James Jack, Mo, and Mabel converge in an epic high-country rendezvous.',
       fullDescription:
-        'The highly anticipated third installment in Charles David Tebbs’ acclaimed series. The Trail Rendezvous brings the threads of Wyoming frontier heroism and high-seas liberation together for an unforgettable climax.\n\nOld allies reunite, fierce enemies mount their final stand, and the true cost of legacy is revealed in the rugged American wilderness. Available soon for pre-order and release.',
+        "The highly anticipated third installment in Charles David Tebbs’ acclaimed series. The Trail Rendezvous #3 brings the threads of Wyoming frontier heroism and high-seas liberation together for an unforgettable climax.\n\nOld allies reunite, fierce enemies mount their final stand, and the true cost of legacy is revealed in the rugged American wilderness. Available soon for pre-order and release.",
       amazonUrl: 'https://www.amazon.com/dp/B0DM9VMN88',
       pageCount: 330,
       publicationDate: 'Coming Soon',
@@ -233,7 +233,7 @@ export const DEFAULT_AUTHOR_DATA: AuthorDataStore = {
   settings: {
     siteTitle: 'Charles David Tebbs | Author',
     metaDescription:
-      'Official website of Charles David Tebbs ("David"), author of The Trail Unfolded series. Western historical adventure, books, news, and bio.',
+      'Official website of Charles David Tebbs ("David"), author of The Trail Series. Western historical adventure, books, news, and bio.',
     amazonAuthorUrl: 'https://www.amazon.com/dp/B0DM9VMN88',
     contactEmail: 'contact@charlesdavidtebbsauthor.com',
     copyrightYear: 2026,

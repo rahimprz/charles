@@ -165,12 +165,12 @@ export default function AboutPage() {
                   )}
                 </div>
 
-                {/* The Trail Unfolded Series Feature */}
+                {/* The Trail Series Feature */}
                 <div className="rounded-xl border border-border bg-card p-6 sm:p-8 space-y-4">
                   <div className="flex items-center gap-2">
                     <BookOpen className="size-5 text-gold" />
                     <h3 className="font-serif text-xl font-medium text-ink sm:text-2xl">
-                      The Inspiration Behind <em>The Trail Unfolded</em>
+                      The Inspiration Behind <em>The Trail Series</em>
                     </h3>
                   </div>
                   <p className="text-sm leading-relaxed text-foreground/85 sm:text-base">

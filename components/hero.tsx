@@ -6,6 +6,11 @@ import { useAuthorData } from '@/lib/author-context'
 
 export function Hero() {
   const { data } = useAuthorData()
+  // Sort books by series order so #1, #2, #3 always display correctly
+  const sortedBooks = [...data.books].sort((a, b) => a.seriesOrder - b.seriesOrder)
+  const book1 = sortedBooks[0]
+  const book2 = sortedBooks[1]
+  const book3 = sortedBooks[2]
 
   return (
     <section className="relative overflow-hidden border-b border-border/40 bg-gradient-to-b from-background via-parchment/30 to-background py-8 sm:py-12 lg:py-16">
@@ -93,16 +98,16 @@ export function Hero() {
                   <div className="relative">
                     <div className="absolute inset-0 bg-gradient-to-br from-stone-800 to-stone-900 rounded-lg transform translate-x-2 translate-y-2 -z-10" />
                     <img
-                      src={data.books[2]?.coverImage || 'https://d1an6hb2j63rg7.cloudfront.net/trail_faf4f2bb9d.webp'}
-                      alt={data.books[2]?.title || 'The Trail Rendezvous'}
+                      src={book1?.coverImage || 'https://d1an6hb2j63rg7.cloudfront.net/3c70513c_c21c_46b6_ad36_4d4ea58d0cb9_4a73ec9f17.jpeg'}
+                      alt={book1?.title || 'The Trail Book #1'}
                       className="relative w-full h-[220px] sm:h-[250px] object-cover rounded-lg shadow-2xl border-2 border-gold/40 group-hover:border-gold transition-all duration-300"
                     />
                     <div className="absolute -top-3 -left-3 bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
                       #1
                     </div>
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 rounded-b-lg">
-                      <p className="font-serif text-xs font-bold text-white truncate">{data.books[2]?.title || 'The Trail Rendezvous'}</p>
-                      <p className="text-[10px] text-emerald-300 font-semibold">{data.books[2]?.status || 'Upcoming'}</p>
+                      <p className="font-serif text-xs font-bold text-white truncate">{book1?.title || 'The Trail Book #1'}</p>
+                      <p className="text-[10px] text-emerald-300 font-semibold">{book1?.status || 'Available now'}</p>
                     </div>
                   </div>
                 </div>
@@ -112,16 +117,16 @@ export function Hero() {
                   <div className="relative">
                     <div className="absolute inset-0 bg-gradient-to-br from-stone-800 to-stone-900 rounded-lg transform translate-x-2 translate-y-2 -z-10" />
                     <img
-                      src={data.books[0]?.coverImage || 'https://d1an6hb2j63rg7.cloudfront.net/3c70513c_c21c_46b6_ad36_4d4ea58d0cb9_4a73ec9f17.jpeg'}
-                      alt={data.books[0]?.title || 'The Trail Book #1'}
+                      src={book2?.coverImage || 'https://d1an6hb2j63rg7.cloudfront.net/c38f9a6d_ce44_481c_9824_273207adfd3f_ca46faaff4.jpeg'}
+                      alt={book2?.title || 'The Trail Unfolded Book #2'}
                       className="relative w-full h-[220px] sm:h-[250px] object-cover rounded-lg shadow-2xl border-2 border-gold/60 group-hover:border-gold transition-all duration-300"
                     />
                     <div className="absolute -top-3 -right-3 bg-gold text-ink text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
                       #2
                     </div>
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 rounded-b-lg">
-                      <p className="font-serif text-xs font-bold text-white truncate">{data.books[0]?.title || 'The Trail Book #1'}</p>
-                      <p className="text-[10px] text-emerald-300 font-semibold">{data.books[0]?.status || 'Available now'}</p>
+                      <p className="font-serif text-xs font-bold text-white truncate">{book2?.title || 'The Trail Unfolded Book #2'}</p>
+                      <p className="text-[10px] text-emerald-300 font-semibold">{book2?.status || 'Available now'}</p>
                     </div>
                   </div>
                 </div>
@@ -131,16 +136,16 @@ export function Hero() {
                   <div className="relative">
                     <div className="absolute inset-0 bg-gradient-to-br from-stone-800 to-stone-900 rounded-lg transform translate-x-2 translate-y-2 -z-10" />
                     <img
-                      src={data.books[1]?.coverImage || 'https://d1an6hb2j63rg7.cloudfront.net/c38f9a6d_ce44_481c_9824_273207adfd3f_ca46faaff4.jpeg'}
-                      alt={data.books[1]?.title || 'The Trail Unfolded Book Sequel #2'}
+                      src={book3?.coverImage || 'https://d1an6hb2j63rg7.cloudfront.net/trail_faf4f2bb9d.webp'}
+                      alt={book3?.title || 'The Trail Rendezvous #3'}
                       className="relative w-full h-[220px] sm:h-[250px] object-cover rounded-lg shadow-2xl border-2 border-amber-400/40 group-hover:border-amber-400 transition-all duration-300"
                     />
                     <div className="absolute -top-3 -right-3 bg-amber-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
                       #3
                     </div>
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 rounded-b-lg">
-                      <p className="font-serif text-xs font-bold text-white truncate">{data.books[1]?.title || 'The Trail Unfolded Book Sequel #2'}</p>
-                      <p className="text-[10px] text-amber-300 font-semibold">{data.books[1]?.status || 'Available now'}</p>
+                      <p className="font-serif text-xs font-bold text-white truncate">{book3?.title || 'The Trail Rendezvous #3'}</p>
+                      <p className="text-[10px] text-amber-300 font-semibold">{book3?.status || 'Upcoming'}</p>
                     </div>
                   </div>
                 </div>

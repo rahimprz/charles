@@ -30,9 +30,9 @@ export function FeaturedSeries() {
             />
           </div>
           <div className="mt-3 text-center">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-gold/15 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-gold">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-gold/15 px-3.5 py-1 text-[11px] font-bold uppercase tracking-wider text-gold">
               <Layers className="size-3" />
-              {books.length} Books in Series
+              The Trail Series ({books.length} Books)
             </span>
           </div>
         </div>
@@ -45,7 +45,7 @@ export function FeaturedSeries() {
             </span>
             <span className="inline-block size-1 rotate-45 bg-gold" />
             <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground sm:text-xs">
-              Sequel (The Trail Book #1)
+              The Trail 3-Book Series
             </span>
           </div>
 

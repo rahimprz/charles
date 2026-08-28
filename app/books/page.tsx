@@ -59,7 +59,7 @@ export default function BooksPage() {
               Books by Charles David Tebbs
             </h1>
             <p className="mt-2 max-w-2xl text-base text-foreground/80 sm:text-lg">
-              Explore the complete reading list of <em>The Trail Unfolded</em> series. Available in paperback and digital formats on Amazon.
+              Explore the complete reading list of <em>The Trail Series</em> (3 Books). Available in paperback and digital formats on Amazon.
             </p>
           </div>
         </section>

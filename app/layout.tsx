@@ -31,7 +31,7 @@ const script = Dancing_Script({
 export const metadata: Metadata = {
   title: 'Charles David Tebbs | Author',
   description:
-    'Official website of Charles David Tebbs ("David"), author of The Trail Unfolded series. Western historical adventure, books, news, and bio.',
+    'Official website of Charles David Tebbs ("David"), author of The Trail Series. Western historical adventure, books, news, and bio.',
   icons: {
     icon: '/icon.svg',
   },

@@ -118,7 +118,7 @@ export default function SeriesPage() {
                 Suggested Reading Order
               </span>
               <h2 className="mt-1 font-serif text-3xl font-medium text-ink sm:text-4xl">
-                Books in The Trail Unfolded Sequence
+                Books in The Trail Series Sequence
               </h2>
             </div>
 
