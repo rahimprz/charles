@@ -3,6 +3,7 @@
 import { SiteHeader } from '@/components/site-header'
 import { NewsletterFooter } from '@/components/newsletter-footer'
 import { useAuthorData } from '@/lib/author-context'
+import { stripSignature } from '@/lib/utils'
 import { CheckCircle2, ChevronRight, Globe, Mail, MessageSquare, Send, Sparkles, User } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -95,8 +96,8 @@ export default function ContactPage() {
 
                     <div className="rounded-xl border border-gold/30 bg-stone-900/80 p-6">
                       <p className="font-serif text-base italic leading-relaxed text-gold-light sm:text-lg">
-                        &ldquo;{author.contactGreeting ||
-                          'I am interested with your reviews and feedback, as a new author I am interested and looking to make improvements.... Thank You! David'}&rdquo;
+                        &ldquo;{stripSignature(author.contactGreeting) ||
+                          'I am interested with your reviews and feedback, as a new author I am interested and looking to make improvements.... Thank You!'}&rdquo;
                       </p>
                       <div className="mt-5 text-right">
                         <span className="font-script text-3xl text-white block">

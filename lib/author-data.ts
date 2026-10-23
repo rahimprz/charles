@@ -116,7 +116,7 @@ export const DEFAULT_AUTHOR_DATA: AuthorDataStore = {
     family: 'Wife Lynda, Daughter Bonnie, and Son Robert',
     quote: "The frontier doesn't forgive the weak, but it always remembers the brave.",
     contactGreeting:
-      'I am interested with your reviews and feedback, as a new author I am interested and looking to make improvements.... Thank You! David',
+      'I am interested with your reviews and feedback, as a new author I am interested and looking to make improvements.... Thank You!',
   },
   series: {
     id: 'the-trail-series',

@@ -3,6 +3,7 @@
 import { CheckCircle2, Globe, Mail, MessageSquare, Send, Sparkles, User } from 'lucide-react'
 import { useState } from 'react'
 import { useAuthorData } from '@/lib/author-context'
+import { stripSignature } from '@/lib/utils'
 
 export function HomeContact() {
   const { data, addMessage } = useAuthorData()
@@ -56,8 +57,8 @@ export function HomeContact() {
 
                 <div className="mt-6 rounded-lg border border-gold/30 bg-stone-900/60 p-5">
                   <p className="font-serif text-base italic leading-relaxed text-gold-light sm:text-lg">
-                    &ldquo;{author.contactGreeting ||
-                      'I am interested with your reviews and feedback, as a new author I am interested and looking to make improvements.... Thank You! David'}&rdquo;
+                    &ldquo;{stripSignature(author.contactGreeting) ||
+                      'I am interested with your reviews and feedback, as a new author I am interested and looking to make improvements.... Thank You!'}&rdquo;
                   </p>
                   <p className="mt-4 text-right font-script text-2xl text-white">
                     — David
