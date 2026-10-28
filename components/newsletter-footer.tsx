@@ -149,6 +149,11 @@ export function NewsletterFooter() {
                 </Link>
               </li>
               <li>
+                <Link href="/media-kit" className="transition-colors hover:text-gold">
+                  Press & Media Kit
+                </Link>
+              </li>
+              <li>
                 <Link href="/contact" className="transition-colors hover:text-gold">
                   Contact & Feedback
                 </Link>
